@@ -1,0 +1,37 @@
+#!/usr/bin/env python3
+
+import os
+import os.path as path
+from shutil import move
+
+BACKUP = "./.backup"
+
+def backup(src):
+    if path.exists(src) and not path.islink(src):
+        newloc = path.join(BACKUP, src)
+        print(" -- Backing up: {} -> {}".format(src, newloc))
+        move(src, newloc)
+
+
+def link(src, dst):
+    src = path.abspath(path.join(os.getcwd(), src))
+    dst = path.abspath(path.join(path.expanduser('~'), dst))
+    backup(dst)
+    print("Linking: {} -> {}".format(src, dst))
+    if path.islink(dst):
+        os.remove(dst)
+    os.symlink(src, dst)
+
+# install
+if not path.isdir(BACKUP):
+    print("Making backup dir...")
+    os.mkdir(BACKUP)
+
+links = {
+    "nvim": ".vim",
+    "nvim/init.vim": ".vimrc",
+    "zsh/.zshrc": ".zshrc"
+}
+
+for (src, dest) in links.items():
+    link(src, dest)

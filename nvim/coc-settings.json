@@ -1,0 +1,61 @@
+{
+    "coc.preferences.colorSupport": true,
+    "coc.preferences.bracketEnterImprove": true,
+    "coc.preferences.hoverTarget": "float",
+    "languageserver": {
+        "ccls": {
+            "command": "ccls",
+            "filetypes": [
+                "c",
+                "cpp",
+                "cxx",
+                "cc"
+            ],
+            "rootPatterns": [
+                ".ccls",
+                "compile_commands.json",
+                ".vim/",
+                ".git/",
+                ".hg/"
+            ],
+            "initializationOptions": {
+                "cache": {
+                    "directory": "/tmp/ccls"
+                }
+            }
+        },  
+        "haskell": {
+            "command": "/home/tuxxi/.cabal/bin/hie-wrapper",
+            "rootPatterns": [
+              "*.cabal",
+              "stack.yaml",
+              "cabal.config",
+              "package.yaml"
+            ],
+            "filetypes": [
+              "hs",
+              "lhs",
+              "haskell"
+            ],
+            "initializationOptions": {
+              "languageServerHaskell": {
+                "hlintOn": true
+              }
+            }
+        },
+        "ocaml": {
+           "command": "ocaml-language-server",
+           "args": ["--stdio"],
+           "initializationOptions": {
+               "reson.path.ocamlmerlin": "/home/tuxxi/.opam/default/bin/ocamlmerlin"
+           },
+           "filetypes": [
+               "ocaml", 
+               "reason",
+               "ml",
+               "mli",
+               "mly"
+           ]
+        }
+    }
+}

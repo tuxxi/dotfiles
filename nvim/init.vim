@@ -23,6 +23,9 @@ set number
 set clipboard+=unnamedplus
 set mouse=a
 set tabstop=4 softtabstop=4 shiftwidth=4 expandtab smarttab autoindent
+if !isdirectory("/home/tuxxi/.vim/backup")
+    call mkdir("/home/tuxxi/.vim/backup", "", 0700)
+endif
 set backup backupdir=/home/tuxxi/.vim/backup
 if !isdirectory("/home/tuxxi/.vim/undodir")
     call mkdir("/home/tuxxi/.vim/undodir", "", 0700)
