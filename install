@@ -30,7 +30,8 @@ if not path.isdir(BACKUP):
 links = {
     "nvim": ".vim",
     "nvim/init.vim": ".vimrc",
-    "zsh/.zshrc": ".zshrc"
+    "zsh/.zshrc": ".zshrc",
+    "git/.gitconfig": ".gitconfig",
 }
 
 for (src, dest) in links.items():
