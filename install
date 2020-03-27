@@ -32,6 +32,7 @@ links = {
     "nvim/init.vim": ".vimrc",
     "zsh/.zshrc": ".zshrc",
     "git/.gitconfig": ".gitconfig",
+    "tmux/tmux.conf": ".tmux.conf",
 }
 
 for (src, dest) in links.items():
