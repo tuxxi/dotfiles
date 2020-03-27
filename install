@@ -4,11 +4,11 @@ import os
 import os.path as path
 from shutil import move
 
-BACKUP = "./.backup"
+BACKUP = ".backup"
 
 def backup(src):
     if path.exists(src) and not path.islink(src):
-        newloc = path.join(BACKUP, src)
+        newloc = path.join(os.getcwd(), BACKUP, path.basename(src))
         print(" -- Backing up: {} -> {}".format(src, newloc))
         move(src, newloc)
 
@@ -28,11 +28,15 @@ if not path.isdir(BACKUP):
     os.mkdir(BACKUP)
 
 links = {
+    "git/.gitconfig": ".gitconfig",
+    "nvim": ".config/nvim",
+    # copy nvim settings for vim as well
     "nvim": ".vim",
     "nvim/init.vim": ".vimrc",
     "zsh/.zshrc": ".zshrc",
-    "git/.gitconfig": ".gitconfig",
     "tmux/tmux.conf": ".tmux.conf",
+    "alacritty": ".config/alacritty",
+    "zathura": ".config/zathura",
 }
 
 for (src, dest) in links.items():

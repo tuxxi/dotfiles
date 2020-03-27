@@ -1,0 +1,15 @@
+# Automatically adjust the document to full width
+set adjust-open width
+
+set guioptions sv
+# zoom and scroll step size
+set zoom-step 20
+set scroll-step 80
+
+# zoom
+map <C-i> zoom in
+map <C-o> zoom out
+
+# disable full path name, only basename
+set window-title-basename true
+set selection-clipboard clipboard
