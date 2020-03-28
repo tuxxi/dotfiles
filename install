@@ -20,7 +20,10 @@ SYMLINKS = {
 }
 
 POSTINSTALL = [
-    "nvim --headless +PlugInstall +qall" # install nvim plugins after copying
+    # install nvim plugins
+    "nvim --headless +PlugInstall +qall",
+    # install tmux plugin manager
+    "git clone https://github.com/tmux-plugins/tpm ~/.tmux/plugins/tpm",
 ]
 
 def backup(src):
