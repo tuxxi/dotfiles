@@ -1,10 +1,27 @@
 #!/usr/bin/env python3
 
+from shutil import move
 import os
 import os.path as path
-from shutil import move
 
 BACKUP = ".backup"
+
+# schema is dest : src to avoid duplicate keys
+SYMLINKS = {
+    ".gitconfig": "git/.gitconfig",
+    ".config/nvim": "nvim",
+    # use neovim config for vim as well
+    ".vim": "nvim",
+    ".vimrc": "nvim/init.vim",
+    ".zshrc": "zsh/.zshrc",
+    ".tmux.conf": "tmux/tmux.conf",
+    ".config/alacritty": "alacritty",
+    ".config/zathura": "zathura",
+}
+
+POSTINSTALL = [
+    "nvim --headless +PlugInstall +qall" # install nvim plugins after copying
+]
 
 def backup(src):
     if path.exists(src) and not path.islink(src):
@@ -27,17 +44,8 @@ if not path.isdir(BACKUP):
     print("Making backup dir...")
     os.mkdir(BACKUP)
 
-links = {
-    "git/.gitconfig": ".gitconfig",
-    "nvim": ".config/nvim",
-    # copy nvim settings for vim as well
-    "nvim": ".vim",
-    "nvim/init.vim": ".vimrc",
-    "zsh/.zshrc": ".zshrc",
-    "tmux/tmux.conf": ".tmux.conf",
-    "alacritty": ".config/alacritty",
-    "zathura": ".config/zathura",
-}
-
-for (src, dest) in links.items():
+for (dest, src) in SYMLINKS.items():
     link(src, dest)
+
+for cmd in POSTINSTALL:
+    os.system(cmd)
