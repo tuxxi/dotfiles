@@ -18,6 +18,14 @@ so ~/.vim/ocaml.vim
 colorscheme one
 set termguicolors
 set background=dark
+hi! Normal ctermbg=NONE guibg=NONE
+hi! NonText ctermbg=NONE guibg=NONE guifg=NONE ctermfg=NONE
+if &term =~ '256color'
+    " disable Background Color Erase (BCE) so that color schemes
+    " render properly when inside 256-color tmux and GNU screen.
+    " see also http://snk.tuxfamily.org/log/vim-256color-bce.html
+    set t_ut=
+endif
 set number
 
 set clipboard+=unnamedplus
