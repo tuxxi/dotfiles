@@ -22,6 +22,7 @@ Plug 'vim-perl/vim-perl', { 'for': 'perl', 'do': 'make clean carp dancer highlig
 Plug 'danilo-augusto/vim-afterglow'
 Plug 'yorickpeterse/happy_hacking.vim'
 Plug 'rakr/vim-one'
+Plug 'machakann/vim-swap'
 
 call plug#end()
 
