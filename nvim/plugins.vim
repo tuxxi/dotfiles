@@ -23,6 +23,7 @@ Plug 'danilo-augusto/vim-afterglow'
 Plug 'yorickpeterse/happy_hacking.vim'
 Plug 'rakr/vim-one'
 Plug 'machakann/vim-swap'
+Plug 'iamcco/markdown-preview.nvim', { 'do': { -> mkdp#util#install() }}
 
 call plug#end()
 
