@@ -48,6 +48,19 @@ let g:airline_section_warning = ''
  " don't show mode below airline
 set noshowmode     
 
+let g:pandoc#syntax#conceal#use = 0
+
+" autogroups
+augroup pandoc_syntax
+  au! BufNewFile,BufFilePre,BufRead *.md set filetype=markdown.pandoc
+augroup END
+
+" spellcheck
+augroup spellcheck
+  au BufNewFile,BufFilePre,BufRead *md setlocal spell spelllang=en_us
+  au FileType gitcommit setlocal spell spelllang=en_us
+augroup END
+
 " FZF settings
 function! FloatingFZF()
   let buf = nvim_create_buf(v:false, v:true)
@@ -77,6 +90,8 @@ function! RipgrepFzf(query, fullscreen)
 endfunction
 command! -nargs=* -bang RG call RipgrepFzf(<q-args>, <bang>0)
 
+" replace W with w, i never want to use W
+command! W w
 
 nnoremap <S-h> :call ToggleHiddenAll()<CR>
 " Leader settings

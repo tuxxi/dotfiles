@@ -1,4 +1,5 @@
 nvim/plugged/
 nvim/backup/
 nvim/undodir/
+nvim/spell/
 .backup
