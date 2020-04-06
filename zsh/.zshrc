@@ -17,7 +17,9 @@ antigen theme subnixr/minimal
 # Tell Antigen that you're done.
 antigen apply
 
+# aliases
 alias ls=exa fd=fdfind
+alias open=xdg-open
 
 export PATH=$PATH:/home/tuxxi/.local/bin:/home/tuxxi/.cargo/bin:/home/tuxxi/.cabal/bin
 
