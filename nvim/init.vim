@@ -31,24 +31,20 @@ set number
 set clipboard+=unnamedplus
 set mouse=a
 set tabstop=4 softtabstop=4 shiftwidth=4 expandtab smarttab autoindent
-" if !isdirectory("/home/tuxxi/.vim/backup")
-"     call mkdir("/home/tuxxi/.vim/backup", "", 0700)
-" endif
-set backup backupdir=/home/tuxxi/.vim/backup
-" if !isdirectory("/home/tuxxi/.vim/undodir")
-"     call mkdir("/home/tuxxi/.vim/undodir", "", 0700)
-" endif
-set undofile undodir=/home/tuxxi/.vim/undodir
+set backup backupdir=/home/tuxxi/.config/nvim/backup
+set undofile undodir=/home/tuxxi/.config/nvim/undodir
 
 set shell=/usr/bin/zsh
 
 " airline
 let g:airline_powerline_fonts = 1
 let g:airline_section_warning = ''
+let g:airline_theme = 'base16_spacemacs'
  " don't show mode below airline
 set noshowmode     
 
 let g:pandoc#syntax#conceal#use = 0
+let g:md_pdf_viewer="zathura"
 
 " autogroups
 augroup pandoc_syntax

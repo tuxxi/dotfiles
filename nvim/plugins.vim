@@ -13,6 +13,7 @@ Plug 'tpope/vim-sleuth'
 Plug 'tpope/vim-surround'
 Plug 'tpope/vim-commentary'
 Plug 'tpope/vim-sensible'
+Plug 'tpope/vim-repeat'
 Plug 'vim-airline/vim-airline'
 Plug 'vim-airline/vim-airline-themes'
 Plug 'psliwka/vim-smoothie'
@@ -25,6 +26,7 @@ Plug 'rakr/vim-one'
 Plug 'machakann/vim-swap'
 Plug 'iamcco/markdown-preview.nvim', { 'do': { -> mkdp#util#install() }}
 Plug 'vim-pandoc/vim-pandoc-syntax'
+Plug 'conornewton/vim-pandoc-markdown-preview'  
 
 call plug#end()
 
