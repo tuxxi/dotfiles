@@ -27,6 +27,7 @@ if &term =~ '256color'
     set t_ut=
 endif
 set number
+set incsearch
 
 set clipboard+=unnamedplus
 set mouse=a
