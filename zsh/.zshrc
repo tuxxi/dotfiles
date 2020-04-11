@@ -7,22 +7,35 @@ antigen use oh-my-zsh
 antigen bundle git
 antigen bundle command-not-found
 # Other bundles
-antigen bundle zsh-users/zsh-syntax-highlighting
 antigen bundle zsh-users/zsh-autosuggestions
-antigen bundle subnixr/minimal
-
-# Load the theme.
-antigen theme subnixr/minimal
+antigen bundle zsh-users/zsh-history-substring-search
+antigen bundle zsh-users/zsh-syntax-highlighting
 
 # Tell Antigen that you're done.
 antigen apply
+
+# Load the theme
+# Shamelessly stolen from here: 
+# https://github.com/dikiaap/dotfiles/blob/master/.oh-my-zsh/themes/oxide.zsh-theme
+source $HOME/dotfiles/zsh/oxide.zsh-theme
 
 # aliases
 alias ls=exa fd=fdfind
 alias open=xdg-open
 
-export PATH=$PATH:/home/tuxxi/.local/bin:/home/tuxxi/.cargo/bin:/home/tuxxi/.cabal/bin
+export PATH=$PATH:$HOME/.local/bin:$HOME/.cargo/bin:$HOME/.cabal/bin
 
+bindkey '^[[A' history-substring-search-up
+bindkey '^[[B' history-substring-search-down
+
+autoload compinit && compinit
+export ZSH_AUTOSUGGEST_STRATEGY=(history completion)
+export ZSH_AUTOSUGGEST_USE_ASYNC=1
+
+# https://github.com/zsh-users/zsh-autosuggestions/issues/512
+_zsh_autosuggest_capture_postcompletion() {
+  unset 'compstate[list]'
+}
 # This speeds up pasting w/ autosuggest
 # https://github.com/zsh-users/zsh-autosuggestions/issues/238
 pasteinit() {
