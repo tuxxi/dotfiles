@@ -29,7 +29,7 @@ bindkey '^[[A' history-substring-search-up
 bindkey '^[[B' history-substring-search-down
 
 autoload compinit && compinit
-export ZSH_AUTOSUGGEST_STRATEGY=(history completion)
+export ZSH_AUTOSUGGEST_STRATEGY=(completion history)
 export ZSH_AUTOSUGGEST_USE_ASYNC=1
 
 # https://github.com/zsh-users/zsh-autosuggestions/issues/512
