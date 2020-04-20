@@ -37,6 +37,11 @@ set undofile undodir=/home/tuxxi/.config/nvim/undodir
 
 set shell=/usr/bin/zsh
 
+"neovim only
+if has('nvim') 
+  set inccommand=nosplit
+endif 
+
 " airline
 let g:airline_powerline_fonts = 1
 let g:airline_section_warning = ''
