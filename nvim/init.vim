@@ -28,6 +28,7 @@ if &term =~ '256color'
 endif
 set number
 set incsearch
+set gdefault " default to /g on seach-replace
 
 set clipboard+=unnamedplus
 set mouse=a
