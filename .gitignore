@@ -2,4 +2,5 @@ nvim/plugged/
 nvim/backup/
 nvim/undodir/
 nvim/spell/
+nvim/autoload/
 .backup
