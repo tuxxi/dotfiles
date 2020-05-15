@@ -6,27 +6,30 @@ if empty(glob('~/.config/nvim/autoload/plug.vim'))
 endif
 call plug#begin('~/.config/nvim/plugged')
 
+" required
 Plug 'neoclide/coc.nvim', {'branch': 'release'}
-Plug 'airblade/vim-gitgutter'
-Plug 'junegunn/fzf'
+Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
 Plug 'junegunn/fzf.vim'
-Plug 'scrooloose/nerdtree'
 Plug 'sheerun/vim-polyglot'
-Plug 'tpope/vim-fugitive'
+" tpope the GOD
 Plug 'tpope/vim-sleuth'
 Plug 'tpope/vim-surround'
 Plug 'tpope/vim-commentary'
 Plug 'tpope/vim-sensible'
 Plug 'tpope/vim-repeat'
-Plug 'vim-airline/vim-airline'
+" nice to have
 Plug 'mbbill/undotree'
+Plug 'scrooloose/nerdtree'
 Plug 'machakann/vim-swap'
-Plug 'iamcco/markdown-preview.nvim', { 'do': { -> mkdp#util#install() }}
 Plug 'vim-pandoc/vim-pandoc-syntax'
 Plug 'conornewton/vim-pandoc-markdown-preview'  
+
+" aestheic 
+Plug 'vim-airline/vim-airline'
+Plug 'vim-airline/vim-airline-themes'
+
 " color themes
 Plug 'rakr/vim-one'
-Plug 'vim-airline/vim-airline-themes'
 
 call plug#end()
 
