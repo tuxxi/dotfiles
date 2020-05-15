@@ -73,3 +73,6 @@ pastefinish() {
 zstyle :bracketed-paste-magic paste-init pasteinit
 zstyle :bracketed-paste-magic paste-finish pastefinish
 
+
+# exports
+export MOZ_DBUS_REMOTE=1
