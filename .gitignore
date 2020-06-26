@@ -4,3 +4,4 @@ nvim/undodir/
 nvim/spell/
 nvim/autoload/
 .backup
+fish/fishd.*

@@ -17,13 +17,18 @@ SYMLINKS = {
     ".tmux.conf": "tmux/tmux.conf",
     ".config/alacritty": "alacritty",
     ".config/zathura": "zathura",
+    ".config/fish": "fish",
 }
 
 POSTINSTALL = [
     # install nvim plugins
     "nvim --headless +PlugInstall +qall",
     # install tmux plugin manager
-    "git clone https://github.com/tmux-plugins/tpm ~/.tmux/plugins/tpm",
+    """
+    if [ ! -d ~/.tmux/plugins/tpm ]; then
+        git clone https://github.com/tmux-plugins/tpm ~/.tmux/plugins/tpm
+    fi
+    """,
 ]
 
 def backup(src):
