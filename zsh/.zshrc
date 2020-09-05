@@ -76,3 +76,4 @@ zstyle :bracketed-paste-magic paste-finish pastefinish
 
 # exports
 export MOZ_DBUS_REMOTE=1
+export QT_AUTO_SCREEN_SCALE_FACTOR=1 

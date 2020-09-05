@@ -96,8 +96,6 @@ nnoremap <silent> <leader>/ :RG<CR>
 " Other binds
 nnoremap <silent> <esc><esc> :noh<return>
 nnoremap <silent> <leader>u :UndotreeToggle<return>
-" map shift-tab to unindent in insert mode
-inoremap <S-Tab> <C-d>
 
 " Map alt+move to move lines around
 nnoremap <A-Down> :m .+1<CR>==
@@ -113,3 +111,20 @@ vnoremap <A-j> :m '>+1<CR>gv=gv
 nnoremap <A-k> :m .-2<CR>==
 inoremap <A-k> <Esc>:m .-2<CR>==gi
 vnoremap <A-k> :m '<-2<CR>gv=gv
+
+" Wayland clipboard provider that strips carriage returns (GTK3 issue).
+" This is needed because currently there's an issue where GTK3 applications on
+" Wayland contain carriage returns at the end of the lines (this is a root
+" issue that needs to be fixed).
+let g:clipboard = {
+      \   'name': 'wayland-strip-carriage',
+      \   'copy': {
+      \      '+': 'wl-copy --foreground --type text/plain',
+      \      '*': 'wl-copy --foreground --type text/plain --primary',
+      \    },
+      \   'paste': {
+      \      '+': {-> systemlist('wl-paste --no-newline | tr -d "\r"')},
+      \      '*': {-> systemlist('wl-paste --no-newline --primary | tr -d "\r"')},
+      \   },
+      \   'cache_enabled': 1,
+      \ }

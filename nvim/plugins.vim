@@ -23,6 +23,7 @@ Plug 'scrooloose/nerdtree'
 Plug 'machakann/vim-swap'
 Plug 'vim-pandoc/vim-pandoc-syntax'
 Plug 'conornewton/vim-pandoc-markdown-preview'  
+Plug 'justinmk/vim-sneak'
 
 " aestheic 
 Plug 'vim-airline/vim-airline'
