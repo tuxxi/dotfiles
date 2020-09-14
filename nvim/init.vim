@@ -11,9 +11,6 @@ set updatetime=300
 set shortmess+=c
 set signcolumn=yes
 
-" ocaml autocomplete provided by opam
-so ~/.vim/ocaml.vim
-
 " Visual Settings
 colorscheme one
 set termguicolors
