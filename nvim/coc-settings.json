@@ -56,6 +56,20 @@
                "mli",
                "mly"
            ]
+        },
+        "clojure-lsp": {
+            "command": "bash",
+            "args": ["-c", "clojure-lsp"],
+            "filetypes": ["clojure"],
+            "rootPatterns": ["project.clj"],
+            "additionalSchemes": ["jar", "zipfile"],
+            "trace.server": "verbose",
+            "initializationOptions": {
+            }
+        }, 
+        "zls" : {
+          "command": "/home/tuxxi/.local/bin/zls",
+          "filetypes": ["zig"]
         }
     }
 }

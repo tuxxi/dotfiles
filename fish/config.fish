@@ -1,4 +1,14 @@
+export EDITOR=nvim
+export VISUAL=$EDITOR
 
+# emacs ansi-term support
+if test -n "$EMACS"
+  set -x TERM eterm-color
+end
 
-# opam configuration
-source /home/tuxxi/.opam/opam-init/init.fish > /dev/null 2> /dev/null; or true
+# this function may be required
+function fish_title
+  true
+end
+
+alias fd fdfind

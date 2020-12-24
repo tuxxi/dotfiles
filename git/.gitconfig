@@ -5,3 +5,5 @@
 	email = aidan@sojourner.me
 [credential]
 	helper = store
+[init]
+	defaultBranch = main
