@@ -41,21 +41,21 @@ if has('nvim')
   set inccommand=nosplit
 endif 
 
-" airline
-let g:airline_powerline_fonts = 1
-let g:airline_theme = 'base16_spacemacs'
-let g:airline_section_warning = ''
-let g:airline_section_error = ''
-let g:airline_section_z = '%l/%L : %c'
- " don't show mode below airline
+" statusline
+let g:lightline = {
+	\ 'colorscheme': 'deus',
+	\ }
+" don't show mode below statusline
 set noshowmode     
 
 let g:pandoc#syntax#conceal#use = 0
 
 " spellcheck
 augroup spellcheck
-  au! BufNewFile,BufFilePre,BufRead *.pdc setlocal spell spelllang=en_us
   au! FileType gitcommit setlocal spell spelllang=en_us
+  au! FileType pandoc setlocal spell spelllang=en_us
+  au! FileType markdown setlocal spell spelllang=en_us
+  au! FileType tex setlocal spell spelllang=en_us
 augroup END
 
 " RainbowParentheses in Lisps
@@ -80,11 +80,13 @@ let $FZF_DEFAULT_COMMAND = 'rg --files --hidden --follow -g "!{node_modules,.git
 " search content of files, without searching for the filename
 command! -bang -nargs=* Rg call fzf#vim#grep("rg --column --line-number --no-heading --color=always --smart-case ".shellescape(<q-args>), 1, {'options': '--delimiter : --nth 4..'}, <bang>0)
 
-" replace W with w, i never want to use W
+" Sometimes I fat-finger :W, want that to be the same as :w
 command! W w
 " get rid of Q for ex mode. No one wants that ...
 nmap Q q
-
+" command for write-make
+command! Wm w | Make
+cnoreabbrev wm Wm
 " Leader settings
 let mapleader=' '
 let maplocalleader=' '
@@ -104,8 +106,13 @@ nnoremap <silent> <leader>u :UndotreeToggle<return>
 " Map alt+move to move lines around
 nnoremap <A-Up>   :<C-u>silent! move-2<CR>==
 xnoremap <A-Up>   :<C-u>silent! '<,'>move-2<CR>gv=gv
-xnoremap <A-Down> :<C-u>silent! '<,'>move'>+<CR>gv=gv
 nnoremap <A-Down> :<C-u>silent! move+<CR>==
+xnoremap <A-Down> :<C-u>silent! '<,'>move'>+<CR>gv=gv
+
+" spellcheck binds
+" select and replace first spell suggestion backwards from current cursor
+imap <c-f> <c-g>u<Esc>[s1z=`]a<c-g>u
+nmap <c-f> [s1z=
 
 " Wayland clipboard provider that strips carriage returns (GTK3 issue).
 " This is needed because currently there's an issue where GTK3 applications on

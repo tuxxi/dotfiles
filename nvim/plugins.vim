@@ -16,6 +16,7 @@ Plug 'tpope/vim-surround'
 Plug 'tpope/vim-commentary'
 Plug 'tpope/vim-sensible'
 Plug 'tpope/vim-repeat'
+Plug 'tpope/vim-dispatch'
 
 Plug 'mbbill/undotree'
 Plug 'scrooloose/nerdtree'
@@ -26,8 +27,7 @@ Plug 'Olical/conjure', {'tag': 'v4.5.0'}
 Plug 'ntpeters/vim-airline-colornum'
 Plug 'junegunn/rainbow_parentheses.vim'
 
-Plug 'vim-airline/vim-airline'
-Plug 'vim-airline/vim-airline-themes'
+Plug 'itchyny/lightline.vim'
 
 Plug 'rakr/vim-one'
 
