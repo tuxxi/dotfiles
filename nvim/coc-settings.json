@@ -21,11 +21,6 @@
             "initializationOptions": {
                 "cache": {
                     "directory": "/tmp/ccls"
-                },
-                "clang": {
-                    "extraArgs": [
-                      "-std=c++17"
-                    ]
                 }
             }
         },  
