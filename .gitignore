@@ -1,7 +1,4 @@
-nvim/plugged/
-nvim/backup/
-nvim/undodir/
-nvim/spell/
-nvim/autoload/
+nvim/plugin/
+nvim/.undo
 .backup
 fish/fishd.*
