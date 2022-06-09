@@ -10,9 +10,6 @@ BACKUP = ".backup"
 SYMLINKS = {
     ".gitconfig": "git/.gitconfig",
     ".config/nvim": "nvim",
-    # use neovim config for vim as well
-    ".vim": "nvim",
-    ".vimrc": "nvim/init.vim",
     ".zshrc": "zsh/.zshrc",
     ".tmux.conf": "tmux/tmux.conf",
     ".config/alacritty": "alacritty",
@@ -21,8 +18,6 @@ SYMLINKS = {
 }
 
 POSTINSTALL = [
-    # install nvim plugins
-    "nvim --headless +PlugInstall +qall",
     # install tmux plugin manager
     """
     if [ ! -d ~/.tmux/plugins/tpm ]; then
