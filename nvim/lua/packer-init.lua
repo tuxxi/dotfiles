@@ -3,7 +3,7 @@ local fn = vim.fn
 local install_path = fn.stdpath('data')..'/site/pack/packer/start/packer.nvim'
 if fn.empty(fn.glob(install_path)) > 0 then
     packer_bootstrap = fn.system({'git', 'clone', '--depth', '1', 'https://github.com/wbthomason/packer.nvim', install_path})
-end 
+end
 
 -- Autocommand to run :PackerSync whenever this file is updated
 vim.api.nvim_create_autocmd('BufWritePost', {
@@ -16,10 +16,12 @@ vim.api.nvim_create_autocmd('BufWritePost', {
 })
 
 return require('packer').startup(function()
-    use 'wbthomason/packer.nvim' -- Packer itself
-    use 'neovim/nvim-lspconfig' -- Collection of configurations for the built-in LSP client
-    use 'folke/tokyonight.nvim' -- Colors
+    use 'wbthomason/packer.nvim'
 
+    -- Colorscheme
+    use 'folke/tokyonight.nvim'
+    -- Collection of configurations for the built-in LSP client
+    use 'neovim/nvim-lspconfig'
     -- Autocomplete UI
     use {
         'hrsh7th/nvim-cmp',
@@ -28,14 +30,17 @@ return require('packer').startup(function()
             'hrsh7th/cmp-nvim-lsp',
             'hrsh7th/cmp-path',
             'hrsh7th/cmp-buffer',
+            'hrsh7th/cmp-nvim-lsp-signature-help',
             'saadparwaiz1/cmp_luasnip',
         },
     }
 
+    -- Fuzzy selector
     use {
-        'nvim-telescope/telescope.nvim', 
+        'nvim-telescope/telescope.nvim',
         requires = {{'nvim-lua/plenary.nvim'}},
     }
+    -- Treesitter for fancy syntax highlighting
     use {
         'nvim-treesitter/nvim-treesitter',
         run = ':TSUpdate',
@@ -44,21 +49,20 @@ return require('packer').startup(function()
     -- LSP progress indicator
     use {
         'j-hui/fidget.nvim',
-        config = function() 
+        config = function()
             require('fidget').setup()
         end
     }
-    use { 
+    -- Comment / uncomment
+    use {
         'numToStr/Comment.nvim',
         config = function()
             require('Comment').setup()
         end
     }
 
-    -- Popup UI for renaming
+    -- highlighting whitespace
     use {
-        'filipdutescu/renamer.nvim',
-        branch = 'master',
-        requires = {{'nvim-lua/plenary.nvim'}}
+        'ntpeters/vim-better-whitespace'
     }
 end)
