@@ -2,7 +2,8 @@
 local fn = vim.fn
 local install_path = fn.stdpath('data')..'/site/pack/packer/start/packer.nvim'
 if fn.empty(fn.glob(install_path)) > 0 then
-    packer_bootstrap = fn.system({'git', 'clone', '--depth', '1', 'https://github.com/wbthomason/packer.nvim', install_path})
+   packer_bootstrap = fn.system({'git', 'clone', '--depth', '1', 'https://github.com/wbthomason/packer.nvim', install_path})
+   vim.o.runtimepath = vim.fn.stdpath('data') .. '/site/pack/*/start/*,' .. vim.o.runtimepath
 end
 
 -- Autocommand to run :PackerSync whenever this file is updated
@@ -12,11 +13,14 @@ vim.api.nvim_create_autocmd('BufWritePost', {
     callback = function()
         vim.cmd('source <afile>')
         vim.cmd('PackerSync')
-    end
+    end,
 })
 
 return require('packer').startup(function()
     use 'wbthomason/packer.nvim'
+
+    -- p4
+    use 'nfvs/vim-perforce'
 
     -- Colorscheme
     use 'folke/tokyonight.nvim'
@@ -65,4 +69,24 @@ return require('packer').startup(function()
     use {
         'ntpeters/vim-better-whitespace'
     }
+
+    use {
+        'mattn/vim-goimports'
+    }
+
+    use({
+        "kylechui/nvim-surround",
+        tag = "*", -- Use for stability; omit to use `main` branch for the latest features
+        config = function()
+            require("nvim-surround").setup({
+                -- Configuration here, or leave empty to use defaults
+            })
+        end
+    })
+
+
+   -- Packer bootstrap
+   if packer_bootstrap then
+     require('packer').sync()
+   end
 end)

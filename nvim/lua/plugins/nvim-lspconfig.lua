@@ -1,3 +1,5 @@
+local lspconfig = require 'lspconfig'
+
 local servers = {
   {
     name = 'pyright'
@@ -14,10 +16,34 @@ local servers = {
       "--completion-style=bundled",
       "--cross-file-rename",
       "--header-insertion=iwyu",
-    }
+    },
   },
   {
-    name = 'gopls'
+    name = 'gopls',
+    cmd_env = { GOFLAGS="-tags=windows,linux"},
+  },
+  {
+    name = 'golangci_lint_ls',
+    root_dir = lspconfig.util.root_pattern('.git', 'go.mod', 'go.work'),
+    init_options = {
+      command = { "golangci-lint", "run", "--disable", "lll", "--out-format", "json", "--issues-exit-code=1" },
+    },
+  },
+  {
+    name = 'rust_analyzer',
+    cmd = {
+      "rustup", "run", "stable", "rust-analyzer",
+    },
+    settings = {
+      ["rust-analyzer"] = {
+        checkOnSave = {
+          enable = true,
+          command = {
+            'cargo', 'clippy', '--workspace', '--message-format=json', '--all-targets', '--all-features'
+          },
+        },
+      },
+    },
   },
 }
 
@@ -46,12 +72,16 @@ local on_attach = function(client, bufnr)
 end
 
 for _, lsp in pairs(servers) do
-  require('lspconfig')[lsp.name].setup {
+  lspconfig[lsp.name].setup {
     flags = {
       -- This will be the default in neovim 0.7+
       debounce_text_changes = 150,
     },
     cmd = lsp.cmd,
+    cmd_env = lsp.cmd_env,
+    settings = lsp.settings,
+    init_options = lsp.init_options,
+    root_dir = lsp.root_dir,
     on_attach = on_attach,
   }
 end

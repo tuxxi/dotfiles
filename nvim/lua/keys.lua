@@ -9,7 +9,7 @@ vim.keymap.set('n', '<leader>d', '<cmd>bd!<cr>', opts) -- close current buffer
 
 -- Telescope
 vim.keymap.set('n', '<leader>/', '<cmd>Telescope live_grep<cr>', opts) -- ripgrep find in all files
-vim.keymap.set('n', '<leader>p', '<cmd>Telescope find_files<cr>', opts) -- fzf find file
+vim.keymap.set('n', '<leader>p', '<cmd>Telescope find_files hidden=true<cr>', opts) -- fzf find file
 vim.keymap.set('n', '<C-p>', '<cmd>Telescope find_files<cr>', opts)
 vim.keymap.set('n', '<leader>;', '<cmd>Telescope buffers<cr>', opts) -- list of open buffers
 
@@ -17,6 +17,9 @@ vim.keymap.set('n', '<leader>;', '<cmd>Telescope buffers<cr>', opts) -- list of 
 -- See `:help vim.lsp.*` for documentation on any of the below functions
 vim.keymap.set('n', 'gd', '<cmd>Telescope lsp_definitions<cr>', opts) -- Jump to definition (shows picker, if more than one)
 vim.keymap.set('n', 'gr', '<cmd>Telescope lsp_references<cr>', opts) -- List of references for symbol
+vim.keymap.set('n', '<leader>e[', '<cmd>lua vim.diagnostic.goto_prev()<CR>', opts)
+vim.keymap.set('n', '<leader>e]', '<cmd>lua vim.diagnostic.goto_next()<CR>', opts)
+vim.keymap.set('n', '<leader>ee', '<cmd>Telescope diagnostics<CR>', opts)
 vim.keymap.set('n', 'gD', vim.lsp.buf.declaration, opts)
 vim.keymap.set('n', 'g<C-d>', vim.lsp.buf.type_definition, opts)
 vim.keymap.set('n', 'gi', vim.lsp.buf.implementation, opts)
@@ -27,7 +30,7 @@ vim.keymap.set('n', '<leader>wr', vim.lsp.buf.remove_workspace_folder, opts)
 vim.keymap.set('n', '<leader>wl', function() print(vim.inspect(vim.lsp.buf.list_workspace_folders())) end, opts)
 vim.keymap.set('n', '<leader>rn', vim.lsp.buf.rename, opts)
 vim.keymap.set('n', '<leader>ca', vim.lsp.buf.code_action, opts)
-vim.keymap.set('n', '<leader>f', vim.lsp.buf.formatting, opts)
+-- vim.keymap.set('n', '<leader>f', vim.lsp.buf.formatting, opts)
 
 -- Clipboard
 if vim.fn.has('wsl') == 1 then

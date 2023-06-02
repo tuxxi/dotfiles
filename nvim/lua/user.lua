@@ -10,6 +10,7 @@ set.smarttab = true
 set.shiftwidth = 4
 set.tabstop = 4
 set.softtabstop = 4
+vim.cmd[[filetype plugin indent on]]
 
 set.shell = "/usr/bin/fish"
 
