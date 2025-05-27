@@ -50,9 +50,18 @@ return require('packer').startup(function()
         run = ':TSUpdate',
     }
 
+    -- Allow navigation / manipulation of code via treesitter
+    use({
+        "nvim-treesitter/nvim-treesitter-textobjects",
+        after = "nvim-treesitter",
+        requires = "nvim-treesitter/nvim-treesitter",
+    })
+
+
     -- LSP progress indicator
     use {
         'j-hui/fidget.nvim',
+        tag = 'legacy',
         config = function()
             require('fidget').setup()
         end
@@ -78,12 +87,15 @@ return require('packer').startup(function()
         "kylechui/nvim-surround",
         tag = "*", -- Use for stability; omit to use `main` branch for the latest features
         config = function()
-            require("nvim-surround").setup({
-                -- Configuration here, or leave empty to use defaults
-            })
+            require("nvim-surround").setup()
         end
     })
 
+    use {
+        'mbbill/undotree'
+    }
+
+    use { 'towolf/vim-helm' }
 
    -- Packer bootstrap
    if packer_bootstrap then

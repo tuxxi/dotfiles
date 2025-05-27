@@ -24,10 +24,6 @@ local servers = {
   },
   {
     name = 'golangci_lint_ls',
-    root_dir = lspconfig.util.root_pattern('.git', 'go.mod', 'go.work'),
-    init_options = {
-      command = { "golangci-lint", "run", "--disable", "lll", "--out-format", "json", "--issues-exit-code=1" },
-    },
   },
   {
     name = 'rust_analyzer',
