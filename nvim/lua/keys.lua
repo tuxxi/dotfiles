@@ -30,18 +30,18 @@ local function telescope_middleware(func, ctxfunc)
   return inner
 end
 
-vim.keymap.set('n', '<C-p>', telescope_middleware(builtin.find_files), opts)
-vim.keymap.set('n', '<leader>p', telescope_middleware(function() builtin.find_files({ hidden = true }) end), opts) -- fzf find file
-vim.keymap.set('n', '<leader>/', telescope_middleware(builtin.live_grep), opts) -- ripgrep find in all files
-vim.keymap.set('n', '<leader>;', telescope_middleware(builtin.buffers), opts) -- list of open buffers
+vim.keymap.set('n', '<C-p>', builtin.find_files, opts)
+vim.keymap.set('n', '<leader>p', function() builtin.find_files({ hidden = true }) end, opts) -- fzf find file
+vim.keymap.set('n', '<leader>/', telescope_middleware(builtin.live_grep, function() return { cwd = vim.fn.getcwd() } end), opts) -- ripgrep find in all files
+vim.keymap.set('n', '<leader>;', builtin.buffers, opts) -- list of open buffers
 
 -- LSP Mappings.
 -- See `:help vim.lsp.*` for documentation on any of the below functions
 vim.keymap.set('n', 'gd', builtin.lsp_definitions, opts) -- Jump to definition (shows picker, if more than one)
 vim.keymap.set('n', 'gr', builtin.lsp_references, opts) -- List of references for symbol
 vim.keymap.set('n', '<leader>ee', builtin.diagnostics, opts)
-vim.keymap.set('n', '<leader>e[', '<cmd>lua vim.diagnostic.goto_prev()<CR>', opts)
-vim.keymap.set('n', '<leader>e]', '<cmd>lua vim.diagnostic.goto_next()<CR>', opts)
+vim.keymap.set('n', '<leader>e[', vim.diagnostic.goto_prev, opts)
+vim.keymap.set('n', '<leader>e]', vim.diagnostic.goto_next, opts)
 vim.keymap.set('n', 'gD', vim.lsp.buf.declaration, opts)
 vim.keymap.set('n', 'g<C-d>', vim.lsp.buf.type_definition, opts)
 vim.keymap.set('n', 'gi', vim.lsp.buf.implementation, opts)
@@ -55,6 +55,11 @@ vim.keymap.set('n', '<leader>ca', vim.lsp.buf.code_action, opts)
 -- vim.keymap.set('n', '<leader>f', vim.lsp.buf.formatting, opts)
 
 vim.keymap.set('n', '<leader><F5>', vim.cmd.UndotreeToggle)
+
+-- AI slop
+vim.keymap.set({'n', 'v'}, '<leader>ag', ':Gen<CR>')
+vim.keymap.set({'n', 'v'}, '<leader>aa', ':Gen Ask<CR>')
+vim.keymap.set({'n', 'v'}, '<leader>ac', ':Gen Change_Code<CR>')
 
 -- Clipboard
 if vim.fn.has('wsl') == 1 then

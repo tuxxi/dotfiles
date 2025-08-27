@@ -1,4 +1,7 @@
 require('telescope').setup{
+    extensions = {
+        ["ui-select"] = {},
+    },
     pickers = {
         buffers = {
             ignore_current_buffer = true,
@@ -8,3 +11,4 @@ require('telescope').setup{
     }
 }
 
+require('telescope').load_extension('ui-select')

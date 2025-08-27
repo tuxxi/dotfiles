@@ -44,6 +44,7 @@ return require('packer').startup(function()
         'nvim-telescope/telescope.nvim',
         requires = {{'nvim-lua/plenary.nvim'}},
     }
+    use {'nvim-telescope/telescope-ui-select.nvim' }
     -- Treesitter for fancy syntax highlighting
     use {
         'nvim-treesitter/nvim-treesitter',
@@ -61,7 +62,6 @@ return require('packer').startup(function()
     -- LSP progress indicator
     use {
         'j-hui/fidget.nvim',
-        tag = 'legacy',
         config = function()
             require('fidget').setup()
         end
@@ -96,6 +96,16 @@ return require('packer').startup(function()
     }
 
     use { 'towolf/vim-helm' }
+
+    -- some AI slop stuff, lets goooo
+    use { 'David-Kunz/gen.nvim',
+        config = function()
+            require('gen').setup({
+                model = "qwen3-coder:30b",
+                display_mode = 'float',
+            })
+        end
+    }
 
    -- Packer bootstrap
    if packer_bootstrap then
